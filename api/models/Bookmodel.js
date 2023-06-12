@@ -7,6 +7,7 @@ const bookSchema=new mongoose.Schema({
     publishedDate:{type:Date,required:true},
     addedDate:{type:Date,
                  default:Date.now }
-})
+                 
+                })
 const bookModel=mongoose.model('Bookmodel',bookSchema);
 module.exports=bookModel;

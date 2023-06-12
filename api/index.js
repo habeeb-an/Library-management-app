@@ -22,9 +22,9 @@ mongoose.connect(process.env.MONGO_URI,{
 })
 
 
-app.post('/report',async (req,res)=>{
+app.post('/books',async (req,res)=>{
+  console.log('report post working')
     const {bookName,author,copies,publishedDate}=req.body
-    if(err) throw err;
     const report=await Bookmodel.create({
         bookName,
         author,
@@ -35,17 +35,65 @@ app.post('/report',async (req,res)=>{
     res.json(report)
 })
 
-//find all books
-app.get('/', (req, res) => {
-    Bookmodel.find({}, (error, books) => {
-      if (error) {
-        console.log(error);
-        res.status(500).send('Error retrieving books from database');
-      } else {
-        res.status(200).send(books);
-      }
-    });
-  });
 
 
-app.listen(5000)
+// search filter
+app.get('/books',async (req,res)=>{
+  const {search,sortByDate}=req.query
+  let sorting={addedDate:1}
+  let filter ={}
+  if(search){
+    filter.author={ $regex: `^${search}`, $options: 'i' }
+  }
+  if(sortByDate==='desc'){
+    sorting={addedDate:-1}
+  }
+await Bookmodel.find(filter).sort(sorting).then((results)=>{
+  res.json(results)
+}).catch(err=>{
+  console.log('error',err)
+}) 
+  })
+
+//delete book 
+app.delete('/books/:id',async (req,res)=>{
+  const {id}=req.params
+  console.log('params are=',req.params)
+  console.log('query is=',req.query)
+ await Bookmodel.findByIdAndDelete(id).then((result)=>{
+  console.log('deleted',result)
+  res.json(res)
+ }
+
+ ).catch(err=>{
+    console.log('error',err)
+  })
+})
+//update field updating
+app.get('/books/:id',(req,res)=>{
+  const {id}=req.params
+  console.log(id)
+  Bookmodel.findById(id).then((results)=>{
+    res.json(results)
+  })
+
+})
+  
+//update book
+app.put('/books/:id',async (req,res)=>{
+ const {id}=req.params
+ const updatedBook=req.body 
+ console.log('updated book=',updatedBook)
+  Bookmodel.findByIdAndUpdate(id,updatedBook).then((updatedDoc)=>{
+    console.log('current updated doc=',updatedDoc)
+    res.json(updatedDoc)
+  }).catch(err=>{
+    console.log('error',err)
+    
+  })
+
+})
+
+
+app.listen(5000,()=>{
+console.log('server is running on port 5000')})
