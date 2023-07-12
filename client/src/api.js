@@ -1,6 +1,6 @@
 import axios from 'axios';
 import qs from 'qs'
-const baseURL= process.env.REACT_APP_API_ENDPOINT
+const baseURL= import.meta.process.env.REACT_APP_API_ENDPOINT
 const axiosInstance = axios.create({
   baseURL: baseURL,
   // Set your API base URL
