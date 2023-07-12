@@ -62,11 +62,11 @@ console.log('updated form field data',book)
    
 
   return (
-    <div className='w-full-[1240px] mx-4 my-4 flex flex-col'>
+    <div className='w-[1240px] mx-auto my-10 flex flex-col'>
         <div className='flex justify-between'> 
             <h1 className='text-center font-bold pb-8'>Library Management System</h1>
             <div>
-                <button className=' border rounded-xl p-2 bg-blue-800 text-white font-medium' onClick={handleRedirect} >Report page</button>
+                <button className=' border rounded-xl p-2 bg-blue-800 text-white font-medium mt-2' onClick={handleRedirect} >Report page</button>
             </div>
         </div>
         <form onSubmit={addBook}>

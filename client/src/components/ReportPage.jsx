@@ -44,7 +44,7 @@ async function handleSearch(ev){
     <div>
       
   
-        <div className='flex justify-between items-center py-4  mx-8'>
+        <div className='flex justify-between items-center py-4  mx-auto w-[1240px]'>
             <h1 className='font-bold text-center  '>Report Page</h1>
                 <div className='flex gap-2'>
                   <input type='text' placeholder='Search by author' value={search} onChange={(ev)=>setSearch(ev.target.value)}></input>
@@ -65,10 +65,11 @@ async function handleSearch(ev){
                         <option value='desc'>Descending</option>
                     </select>
                 </div>
-            <div className='bg-blue-600 text-white items-center justify-center text-center flex-none'>
-                <Link to={'/bookpage'} className='mx-auto my-auto px-2 py-2 font-semibold rounded-md'>Add Book</Link>
+            <div className='border rounded-xl p-2 bg-blue-800 text-white font-medium'>
+                <Link to={'/bookpage'} className='rounded-xl p-2 bg-blue-800 font-medium'>Add Book</Link>
              </div>
         </div>
+        
         {reports.length >0 ? reports.map((report)=>(
           
            <div className='font-serif font-medium bg-gray-200 rounded-lg mx-8 my-4 py-2' key={report._id}>
