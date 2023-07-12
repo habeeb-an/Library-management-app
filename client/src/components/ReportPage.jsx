@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { deleteBook, getFilter, updateSelection} from '../api'
+import { deleteBook, getFilter} from '../api'
 
 import { AiOutlineSearch } from 'react-icons/ai';
 import { AiOutlineDelete } from 'react-icons/ai';
