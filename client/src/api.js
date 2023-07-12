@@ -1,7 +1,7 @@
 import axios from 'axios';
 import qs from 'qs'
 const axiosInstance = axios.create({
-  baseURL: import.meta.env.VITE_API_URL,
+  baseURL: import.meta.env.VITE_API_URL|| 'http://localhost:5000',
   // Set your API base URL
   timeout: 5000, // Set a default timeout (optional)
   headers: {
