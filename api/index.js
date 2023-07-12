@@ -6,13 +6,13 @@ var cors = require('cors');
 
 const Bookmodel=require('./models/Bookmodel.js')
 
-
+const whitelist=['http://localhost:5173','https://library-management-app.vercel.app/']
 const app=express()
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(cors({
     credentials:true,
-    origin:'http://localhost:5173'
+    origin:whitelist
 }));
 
 const PORT=process.env.PORT || 5000;
