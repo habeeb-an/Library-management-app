@@ -6,6 +6,7 @@ var cors = require('cors');
 
 const Bookmodel=require('./models/Bookmodel.js')
 
+
 const app=express()
 app.use(express.json());
 app.use(bodyParser.json());
@@ -14,7 +15,7 @@ app.use(cors({
     origin:'http://localhost:5173'
 }));
 
-
+const PORT=process.env.PORT || 5000;
 
 mongoose.connect(process.env.MONGO_URI,{
     useNewUrlParser: true,
@@ -95,5 +96,5 @@ app.put('/books/:id',async (req,res)=>{
 })
 
 
-app.listen(5000,()=>{
+app.listen(PORT,()=>{
 console.log('server is running on port 5000')})
