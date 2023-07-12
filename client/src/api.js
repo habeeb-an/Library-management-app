@@ -1,8 +1,8 @@
 import axios from 'axios';
 import qs from 'qs'
-
+baseURL= import.meta.process.env.REACT_APP_API_ENDPOINT
 const axiosInstance = axios.create({
-  baseURL: import.meta.process.env.REACT_APP_API_ENDPOINT,
+  baseURL: baseURL,
   // Set your API base URL
   timeout: 5000, // Set a default timeout (optional)
   headers: {
